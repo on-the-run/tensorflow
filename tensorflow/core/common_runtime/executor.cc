@@ -100,7 +100,7 @@ bool SetTimelineLabel(const Node* node, NodeExecStats* node_stats) {
     string recv_device;
     TF_CHECK_OK(GetNodeAttr(attrs, "recv_device", &recv_device));
     text = strings::StrCat(memory, node->name(), " = ", node->type_string(),
-                           "(", tensor_name, " @", recv_device);
+                           "(", tensor_name, ") @", recv_device);
     is_transfer_node = true;
   } else if (IsRecv(node)) {
     string tensor_name;
@@ -108,7 +108,7 @@ bool SetTimelineLabel(const Node* node, NodeExecStats* node_stats) {
     string send_device;
     TF_CHECK_OK(GetNodeAttr(attrs, "send_device", &send_device));
     text = strings::StrCat(memory, node->name(), " = ", node->type_string(),
-                           "(", tensor_name, " @", send_device);
+                           "(", tensor_name, ") @", send_device);
     is_transfer_node = true;
   } else {
     text =
